@@ -614,64 +614,430 @@ nav ul li a:hover {
     </section>
 
     <section id="cursos" class="section">
-      <h3>Cursos Populares</h3>
-      <div class="card-container">
-        <div class="card">
-          <img src="https://i.imgur.com/0b2Snt6.jpg" alt="Curso Excel" />
-          <div class="card-body">
-            <h4>💻 ¡Curso de marketing digital!</h4>
-  <button class="btn-info" onclick="abrirCurso('marketing')"> Más info </button>
-          </div>
+
+<style>
+/* ===== CATÁLOGO CONSULTORA C&C ===== */
+
+#cursos .cc-catalogo {
+  width: 100%;
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  color: #263747;
+}
+
+#cursos .cc-catalogo * {
+  box-sizing: border-box;
+}
+
+#cursos .cc-header {
+  margin-bottom: 30px;
+}
+
+#cursos .cc-header h3 {
+  color: #27496d;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 9px;
+}
+
+#cursos .cc-header p {
+  color: #748292;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* MÓDULOS */
+
+#cursos .cc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+#cursos .cc-module {
+  padding: 0;
+  width: 100%;
+  border: 1px solid #e3e9ef;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  transition: transform .25s, box-shadow .25s;
+}
+
+#cursos .cc-module:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(39,73,109,.12);
+}
+
+#cursos .cc-image {
+  height: 180px;
+  overflow: hidden;
+  background: #edf2f7;
+}
+
+#cursos .cc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s;
+}
+
+#cursos .cc-module:hover .cc-image img {
+  transform: scale(1.04);
+}
+
+#cursos .cc-info {
+  padding: 19px;
+}
+
+#cursos .cc-info h4 {
+  color: #27496d;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+#cursos .cc-info p {
+  color: #748292;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+}
+
+#cursos .cc-explore {
+  color: #3f72af;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+/* VISTA INTERNA */
+
+#cursos .cc-courses-view {
+  display: none;
+}
+
+#cursos .cc-back {
+  background: transparent;
+  border: none;
+  color: #3f72af;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 0;
+  margin-bottom: 18px;
+}
+
+#cursos .cc-back:hover {
+  color: #27496d;
+}
+
+#cursos .cc-module-heading {
+  margin-bottom: 25px;
+}
+
+#cursos .cc-module-heading h3 {
+  color: #27496d;
+  font-size: 27px;
+  margin: 0 0 8px;
+}
+
+#cursos .cc-module-heading p {
+  color: #748292;
+  font-size: 14px;
+  margin: 0;
+}
+
+#cursos .cc-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#cursos .cc-course {
+  background: #fff;
+  border: 1px solid #e3e9ef;
+  border-radius: 10px;
+  padding: 20px;
+  transition: box-shadow .2s;
+}
+
+#cursos .cc-course:hover {
+  box-shadow: 0 5px 16px rgba(39,73,109,.08);
+}
+
+#cursos .cc-course h4 {
+  color: #27496d;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+#cursos .cc-course .cc-course-button {
+  display: inline-block;
+  background: #3f72af;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+#cursos .cc-course .cc-course-button:hover {
+  background: #27496d;
+}
+
+/* CELULARES */
+
+@media(max-width: 600px) {
+
+  #cursos .cc-grid {
+    gap: 12px;
+  }
+
+  #cursos .cc-image {
+    height: 115px;
+  }
+
+  #cursos .cc-info {
+    padding: 13px;
+  }
+
+  #cursos .cc-info h4 {
+    font-size: 14px;
+  }
+
+  #cursos .cc-info p {
+    font-size: 11px;
+  }
+
+  #cursos .cc-explore {
+    font-size: 9px;
+  }
+
+  #cursos .cc-courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #cursos .cc-module-heading h3 {
+    font-size: 23px;
+  }
+
+}
+</style>
+
+<div class="cc-catalogo">
+
+  <!-- CATÁLOGO PRINCIPAL -->
+
+  <div id="cc-modules-view">
+
+    <div class="cc-header">
+      <h3>Áreas de capacitación</h3>
+      <p>Conocé nuestra propuesta académica y encontrá la capacitación ideal para tu desarrollo profesional.</p>
+    </div>
+
+    <div class="cc-grid">
+
+      <!-- ESCOLAR -->
+
+      <button class="cc-module" onclick="ccAbrirModulo('escolar')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800"
+               alt="Formación escolar" loading="lazy">
         </div>
-        <div class="card">
-          <img src="https://i.imgur.com/3SxGH7x.jpg" alt="Curso Inglés" />
-          <div class="card-body">
-            <h4>📊 Taller contable impositivo</h4>
-
- <button class="btn-info" onclick="abrirCurso('Taller contable impositivo')"> Más info </button>
-          </div>
+        <div class="cc-info">
+          <h4>Módulo Escolar</h4>
+          <p>Capacitación y formación para el ámbito educativo.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
-        <div class="card">
-          <img src="https://i.imgur.com/lmqWiHc.jpg" alt="Curso Redes" />
-          <div class="card-body">
-             <h4>🧾 Taller de Monotributo & Facturación Electrónica</h4>
+      </button>
 
-  <button class="btn-info" onclick="abrirCurso('Taller de Monotributo & Facturación Electrónica')"> Más info </button>
-          </div>
+      <!-- CONTABLE -->
+
+      <button class="cc-module" onclick="ccAbrirModulo('contable')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800"
+               alt="Contabilidad e impuestos" loading="lazy">
         </div>
-         <div class="card">
-          <img src="https://i.imgur.com/ZfUcrB3.jpg" alt="Curso Redes" />
-          <div class="card-body">
-            <h4>💡 Taller de Educación Financiera</h4>
-
-  <button class="btn-info" onclick="abrirCurso('Taller de Educacion Financiera')"> Más info </button>
-          </div>
+        <div class="cc-info">
+          <h4>Contable e Impositivo</h4>
+          <p>Administración, gestión contable e impuestos.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
-        <div class="card">
-          <img src="https://i.imgur.com/dDGFc4M.jpg" alt="Curso Redes" />
-          <div class="card-body">
-            <h4>📑 Liquidación de Sueldos</h4>
+      </button>
 
-  <button class="btn-info" onclick="abrirCurso('Liquidación de sueldos')"> Más info </button>
-          </div>
+      <!-- MARKETING -->
+
+      <button class="cc-module" onclick="ccAbrirModulo('marketing')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800"
+               alt="Marketing digital" loading="lazy">
         </div>
-         <div class="card">
-          <img src="https://i.imgur.com/uT89M8P.jpg" alt="Curso Redes" />
-          <div class="card-body">
-            <h4>📊 Excel para Empresas</h4>
-
-  <button class="btn-info" onclick="abrirCurso('Excel para Empresas')"> Más info </button>
-          </div>
+        <div class="cc-info">
+          <h4>Marketing</h4>
+          <p>Comunicación, marketing y estrategias digitales.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
-     <div class="card">
+      </button>
 
-  <img src="https://i.imgur.com/ydBfTNY.jpg" alt="Curso Administración de Empresas Agropecuarias🌾" /> <div class="card-body"> <h4>🌾 Administración de Empresas Agropecuarias</h4>
+      <!-- INFORMÁTICA -->
 
-<button class="btn-info" onclick="abrirCurso('Curso Administración de Empresas Agropecuarias')"> Más info </button>
+      <button class="cc-module" onclick="ccAbrirModulo('informatica')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800"
+               alt="Informática y tecnología" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Informática</h4>
+          <p>Tecnología, computación y herramientas digitales.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- CURSOS DE CADA MÓDULO -->
+
+  <div id="cc-courses-view" class="cc-courses-view">
+
+    <button class="cc-back" onclick="ccVolver()">
+      ← Volver a las áreas de capacitación
+    </button>
+
+    <div class="cc-module-heading">
+      <h3 id="cc-module-title"></h3>
+      <p id="cc-module-description"></p>
+    </div>
+
+    <div class="cc-courses-grid" id="cc-courses-list"></div>
+
+  </div>
 
 </div>
 
-    </section>
+<script>
+(function() {
+
+  const modulos = {
+
+    escolar: {
+      titulo: "Módulo Escolar",
+      descripcion: "Formación para el ámbito educativo.",
+      cursos: [
+        "Preceptor",
+        "Auxiliar de Jardín Maternal"
+      ]
+    },
+
+    contable: {
+      titulo: "Contable e Impositivo",
+      descripcion: "Capacitación en administración y gestión contable.",
+      cursos: [
+        "Secretariado Contable",
+        "Taller contable impositivo",
+        "Taller de Monotributo & Facturación Electrónica",
+        "Taller de Educación Financiera",
+        "Liquidación de Sueldos",
+        "Excel para Empresas",
+        "Administración de Empresas Agropecuarias"
+      ]
+    },
+
+    marketing: {
+      titulo: "Marketing",
+      descripcion: "Desarrollá habilidades de comunicación y marketing.",
+      cursos: [
+        "Marketing Digital"
+      ]
+    },
+
+    informatica: {
+      titulo: "Informática",
+      descripcion: "Tecnología y herramientas informáticas.",
+      cursos: [
+        "Excel + Word",
+        "Diseño Gráfico",
+        "Reparación de Celulares"
+      ]
+    }
+
+  };
+
+  window.ccAbrirModulo = function(id) {
+
+    const modulo = modulos[id];
+    if (!modulo) return;
+
+    document.getElementById("cc-modules-view").style.display = "none";
+    document.getElementById("cc-courses-view").style.display = "block";
+
+    document.getElementById("cc-module-title").textContent = modulo.titulo;
+    document.getElementById("cc-module-description").textContent = modulo.descripcion;
+
+    const lista = document.getElementById("cc-courses-list");
+    lista.innerHTML = "";
+
+    modulo.cursos.forEach(nombre => {
+
+      const tarjeta = document.createElement("div");
+      tarjeta.className = "cc-course";
+
+      const titulo = document.createElement("h4");
+      titulo.textContent = nombre;
+
+      const boton = document.createElement("button");
+      boton.className = "cc-course-button";
+      boton.textContent = "Más información";
+
+      boton.onclick = function() {
+
+        if (typeof window.abrirCurso === "function") {
+          window.abrirCurso(nombre);
+        } else {
+          alert("La información de este curso todavía no está disponible.");
+        }
+
+      };
+
+      tarjeta.append(titulo, boton);
+      lista.appendChild(tarjeta);
+
+    });
+
+    document.getElementById("cursos").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  };
+
+  window.ccVolver = function() {
+
+    document.getElementById("cc-courses-view").style.display = "none";
+    document.getElementById("cc-modules-view").style.display = "block";
+
+    document.getElementById("cursos").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  };
+
+})();
+</script>
+
+</section>
 
     <section id="info" class="section">
       <h2>¿Quiénes somos?</h2>
