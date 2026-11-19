@@ -835,6 +835,7 @@ nav ul li a:hover {
 }
 </style>
 
+
 <div class="cc-catalogo">
 
   <!-- CATÁLOGO PRINCIPAL -->
@@ -849,73 +850,168 @@ nav ul li a:hover {
     <div class="cc-grid">
 
       <!-- ESCOLAR -->
+      <button class="cc-module" onclick="ccAbrirModulo('escolar')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Formación escolar" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Módulo Escolar</h4>
+          <p>Capacitación y formación para el ámbito educativo.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
 
-     const modulos = {
+      <!-- CONTABLE -->
+      <button class="cc-module" onclick="ccAbrirModulo('contable')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="Contabilidad e impuestos" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Contable e Impositivo</h4>
+          <p>Administración, gestión contable e impuestos.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
 
-  escolar: {
-    titulo: "Módulo Escolar",
-    descripcion: "Formación para el ámbito educativo.",
-    cursos: [
-      "Preceptor",
-      "Auxiliar de Jardín Maternal"
-    ]
-  },
+      <!-- MARKETING -->
+      <button class="cc-module" onclick="ccAbrirModulo('marketing')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Marketing digital" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Módulo Marketing</h4>
+          <p>Comunicación, marketing y estrategias digitales.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
 
-  contable: {
-    titulo: "Módulo Contable e Impositivo",
-    descripcion: "Capacitación en administración y gestión contable.",
-    cursos: [
-      "Secretariado Contable",
-      "Taller contable impositivo",
-      "Taller de Monotributo & Facturación Electrónica",
-      "Liquidación de Sueldos",
-      "Excel para Empresas",
-      "Administración de Empresas Agropecuarias"
-    ]
-  },
+      <!-- INFORMÁTICA -->
+      <button class="cc-module" onclick="ccAbrirModulo('informatica')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Informática y tecnología" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Módulo Informática</h4>
+          <p>Tecnología, computación y herramientas digitales.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
 
-  marketing: {
-    titulo: "Módulo Marketing y Redes",
-    descripcion: "Desarrollá habilidades de comunicación y marketing.",
-    cursos: [
-      "Marketing Digital"
-    ]
-  },
+      <!-- ADMINISTRATIVO -->
+      <button class="cc-module" onclick="ccAbrirModulo('administrativo')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800" alt="Administración" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Módulo Administrativo</h4>
+          <p>Gestión, organización y administración de empresas.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
 
-  informatica: {
-    titulo: "Módulo Informática",
-    descripcion: "Tecnología y herramientas informáticas.",
-    cursos: [
-      "Excel + Word",
-      "Diseño Gráfico"
-    ]
-  },
+      <!-- FINANCIERO -->
+      <button class="cc-module" onclick="ccAbrirModulo('financiero')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=800" alt="Finanzas" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Módulo Financiero</h4>
+          <p>Finanzas, inversiones y gestión de recursos económicos.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
 
-  administrativo: {
-    titulo: "Módulo Administrativo",
-    descripcion: "Desarrollá habilidades para gestionar, organizar y administrar empresas y organizaciones.",
-    cursos: [
-      "Secretariado Administrativo",
-      "Administración de Empresas",
-      "Auxiliar Administrativo",
-      "Facturación y Gestión Administrativa",
-      "Liquidación de Sueldos"
-    ]
-  },
+    </div>
+  </div>
 
-  financiero: {
-    titulo: "Módulo Financiero",
-    descripcion: "Adquirí conocimientos para gestionar recursos económicos, organizar finanzas y tomar decisiones financieras.",
-    cursos: [
-      "Educación Financiera",
-      "Finanzas Personales",
-      "Monotributo y Gestión Impositiva",
-      "Costos e Ingresos",
-      "Administración Financiera"
-    ]
-  }
+  <!-- CURSOS DE CADA MÓDULO -->
 
-};
+  <div id="cc-courses-view" class="cc-courses-view" style="display:none;">
+
+    <button class="cc-back" onclick="ccVolver()">
+      ← Volver a las áreas de capacitación
+    </button>
+
+    <div class="cc-module-heading">
+      <h3 id="cc-module-title"></h3>
+      <p id="cc-module-description"></p>
+    </div>
+
+    <div class="cc-courses-grid" id="cc-courses-list"></div>
+
+  </div>
+
+</div>
+
+<script>
+(function() {
+
+  const modulos = {
+
+    escolar: {
+      titulo: "Módulo Escolar",
+      descripcion: "Formación para el ámbito educativo.",
+      cursos: [
+        "Preceptor",
+        "Auxiliar de Jardín Maternal"
+      ]
+    },
+
+    contable: {
+      titulo: "Módulo Contable e Impositivo",
+      descripcion: "Capacitación en administración y gestión contable.",
+      cursos: [
+        "Secretariado Contable",
+        "Taller contable impositivo",
+        "Taller de Monotributo & Facturación Electrónica",
+        "Liquidación de Sueldos",
+        "Excel para Empresas",
+        "Administración de Empresas Agropecuarias"
+      ]
+    },
+
+    marketing: {
+      titulo: "Módulo Marketing y Redes",
+      descripcion: "Desarrollá habilidades de comunicación y marketing.",
+      cursos: [
+        "Marketing Digital"
+      ]
+    },
+
+    informatica: {
+      titulo: "Módulo Informática",
+      descripcion: "Tecnología y herramientas informáticas.",
+      cursos: [
+        "Excel + Word",
+        "Diseño Gráfico"
+      ]
+    },
+
+    administrativo: {
+      titulo: "Módulo Administrativo",
+      descripcion: "Desarrollá habilidades para gestionar, organizar y administrar empresas y organizaciones.",
+      cursos: [
+        "Secretariado Administrativo",
+        "Administración de Empresas",
+        "Auxiliar Administrativo",
+        "Facturación y Gestión Administrativa",
+        "Liquidación de Sueldos"
+      ]
+    },
+
+    financiero: {
+      titulo: "Módulo Financiero",
+      descripcion: "Adquirí conocimientos para gestionar recursos económicos, organizar finanzas y tomar decisiones financieras.",
+      cursos: [
+        "Educación Financiera",
+        "Finanzas Personales",
+        "Monotributo y Gestión Impositiva",
+        "Costos e Ingresos",
+        "Administración Financiera"
+      ]
+    }
+
+  };
 
   window.ccAbrirModulo = function(id) {
 
@@ -979,6 +1075,7 @@ nav ul li a:hover {
 
 })();
 </script>
+
 
 </section>
 
