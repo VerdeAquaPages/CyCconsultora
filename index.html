@@ -836,10 +836,10 @@ nav ul li a:hover {
 </style>
 
 
+
 <div class="cc-catalogo">
 
   <!-- VISTA PRINCIPAL DE MÓDULOS -->
-
   <div id="cc-modules-view">
 
     <div class="cc-header">
@@ -849,7 +849,6 @@ nav ul li a:hover {
 
     <div class="cc-grid">
 
-      <!-- ESCOLAR -->
       <button class="cc-module" onclick="ccAbrirModulo('escolar')">
         <div class="cc-image">
           <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Formación escolar" loading="lazy">
@@ -861,7 +860,6 @@ nav ul li a:hover {
         </div>
       </button>
 
-      <!-- CONTABLE E IMPOSITIVO -->
       <button class="cc-module" onclick="ccAbrirModulo('contable')">
         <div class="cc-image">
           <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="Contabilidad e impuestos" loading="lazy">
@@ -873,7 +871,6 @@ nav ul li a:hover {
         </div>
       </button>
 
-      <!-- ADMINISTRATIVO -->
       <button class="cc-module" onclick="ccAbrirModulo('administrativo')">
         <div class="cc-image">
           <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800" alt="Administración" loading="lazy">
@@ -885,7 +882,6 @@ nav ul li a:hover {
         </div>
       </button>
 
-      <!-- INFORMÁTICA -->
       <button class="cc-module" onclick="ccAbrirModulo('informatica')">
         <div class="cc-image">
           <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Informática y tecnología" loading="lazy">
@@ -897,7 +893,6 @@ nav ul li a:hover {
         </div>
       </button>
 
-      <!-- MARKETING -->
       <button class="cc-module" onclick="ccAbrirModulo('marketing')">
         <div class="cc-image">
           <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Marketing digital" loading="lazy">
@@ -912,9 +907,7 @@ nav ul li a:hover {
     </div>
   </div>
 
-
-  <!-- VISTA DE CURSOS DE CADA MÓDULO -->
-
+  <!-- VISTA DE CURSOS DEL MÓDULO -->
   <div id="cc-courses-view" class="cc-courses-view" style="display:none;">
 
     <button class="cc-back" onclick="ccVolver()">
@@ -930,272 +923,375 @@ nav ul li a:hover {
 
   </div>
 
-</div>
+  <!-- VISTA DEL DETALLE DE CADA CURSO -->
+  <div id="cc-course-detail-view" style="display:none;">
 
+    <button class="cc-back" onclick="ccVolverCursos()">
+      ← Volver a los cursos
+    </button>
+
+    <div id="cc-course-detail"></div>
+
+  </div>
+
+</div>
 
 <script>
 (function() {
 
-    /* MÓDULO ESCOLAR */
+  /* =====================================
+     INFORMACIÓN DE LOS MÓDULOS Y CURSOS
+  ===================================== */
 
-const modulos = {
+  const modulos = {
 
-  escolar: {
-    titulo: "Módulo Escolar",
-    descripcion: "Formación y capacitación para desempeñarse en instituciones y organizaciones del ámbito educativo.",
-    cursos: [
-      {
-        nombre: "Secretariado Docente",
-        descripcion: "Capacitate para desempeñarte en tareas administrativas y organizativas dentro de instituciones educativas. Aprendé sobre documentación escolar, gestión de legajos, comunicación institucional y organización de procesos administrativos.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      },
-      {
-        nombre: "Preceptor",
-        descripcion: "Incorporá herramientas para acompañar las trayectorias educativas de los estudiantes. Conocé las funciones del preceptor, la convivencia escolar, el seguimiento de asistencia, la comunicación con docentes y familias y la organización institucional.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      }
-    ]
-  },
+    escolar: {
+      titulo: "Módulo Escolar",
+      descripcion: "Formación y capacitación para desempeñarse en instituciones y organizaciones del ámbito educativo.",
+      cursos: [
+        {
+          nombre: "Secretariado Docente",
+          descripcion: "Capacitate para desempeñarte en tareas administrativas y organizativas dentro de instituciones educativas. Aprendé sobre documentación escolar, gestión de legajos, comunicación institucional y organización de procesos administrativos.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        },
+        {
+          nombre: "Preceptor",
+          descripcion: "Incorporá herramientas para acompañar las trayectorias educativas de los estudiantes. Conocé las funciones del preceptor, la convivencia escolar, el seguimiento de asistencia, la comunicación con docentes y familias y la organización institucional.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        }
+      ]
+    },
 
-  contable: {
-    titulo: "Módulo Contable e Impositivo",
-    descripcion: "Aprendé a gestionar las principales obligaciones fiscales de pequeños contribuyentes. Incorporá conocimientos sobre CUIT, clave fiscal, inscripción al Monotributo, categorías, recategorizaciones y emisión de comprobantes electrónicos.",
-    cursos: [
-      {
-        nombre: "Monotributo y Facturación Electrónica",
-        descripcion: "Aprendé a gestionar las principales obligaciones fiscales de pequeños contribuyentes. Incorporá conocimientos sobre CUIT, clave fiscal, inscripción al Monotributo, categorías, recategorizaciones y emisión de comprobantes electrónicos..",
-        objetivo: "Brindar herramientas para conocer y realizar los procedimientos básicos relacionados con el Monotributo.",
-        contenidos: [
-          "Obtención de clave fiscal y CUIT",
-          "Alta en Monotributo",
-          "Facturación electrónica",
-          "Recategorización"
-        ],
-        dirigido: "Personas interesadas en aprender sobre trámites fiscales y facturación."
-      },
-      {
-        nombre: "Liquidación de Sueldos",
-        descripcion: "Desarrollá conocimientos para realizar liquidaciones salariales y comprender la administración laboral. Aprendé sobre haberes, descuentos, vacaciones, aguinaldo, cargas sociales, liquidación de personal y normativa laboral.",
-        objetivo: "Brindar herramientas para comprender los conceptos y procedimientos de la liquidación de haberes.",
-        contenidos: [
-          "Conceptos básicos de liquidación",
-          "Cálculo de vacaciones y SAC",
-          "Liquidación para empleadas domésticas",
-          "Formulario F.931",
-          "Marco legal"
-        ],
-        dirigido: "Personas interesadas en adquirir conocimientos sobre administración laboral y liquidación de sueldos."
-      },
-      {
-        nombre: "Auxiliar Contable Impositivo",
-        descripcion: "Adquirí herramientas para colaborar en estudios contables y áreas administrativas de empresas. Aprendé sobre registraciones contables, documentación comercial, impuestos, conciliaciones bancarias, arqueo de caja y procedimientos administrativos e impositivos.",
-        objetivo: "Incorporar conocimientos contables e impositivos aplicables a tareas administrativas y empresariales.",
-        contenidos: [
-          "Monotributo y facturación electrónica",
-          "Ingresos Brutos",
-          "IVA e Impuesto a las Ganancias",
-          "Conciliaciones bancarias",
-          "Arqueo de caja",
-          "Liquidación de sueldos y cargas sociales"
-        ],
-        dirigido: "Personas interesadas en el área contable, administrativa e impositiva."
-      }
-    ]
-  },
+    contable: {
+      titulo: "Módulo Contable e Impositivo",
+      descripcion: "Capacitación en herramientas contables, impositivas y administrativas para el ámbito laboral y empresarial.",
+      cursos: [
+        {
+          nombre: "Monotributo y Facturación Electrónica",
+          descripcion: "Aprendé a gestionar las principales obligaciones fiscales de pequeños contribuyentes. Incorporá conocimientos sobre CUIT, clave fiscal, inscripción al Monotributo, categorías, recategorizaciones y emisión de comprobantes electrónicos.",
+          objetivo: "Brindar herramientas para conocer y realizar los procedimientos básicos relacionados con el Monotributo.",
+          contenidos: [
+            "Obtención de clave fiscal y CUIT",
+            "Alta en Monotributo",
+            "Facturación electrónica",
+            "Recategorización"
+          ],
+          dirigido: "Personas interesadas en aprender sobre trámites fiscales y facturación."
+        },
+        {
+          nombre: "Liquidación de Sueldos",
+          descripcion: "Desarrollá conocimientos para realizar liquidaciones salariales y comprender la administración laboral. Aprendé sobre haberes, descuentos, vacaciones, aguinaldo, cargas sociales, liquidación de personal y normativa laboral.",
+          objetivo: "Brindar herramientas para comprender los conceptos y procedimientos de la liquidación de haberes.",
+          contenidos: [
+            "Conceptos básicos de liquidación",
+            "Cálculo de vacaciones y SAC",
+            "Liquidación para empleadas domésticas",
+            "Formulario F.931",
+            "Marco legal"
+          ],
+          dirigido: "Personas interesadas en adquirir conocimientos sobre administración laboral y liquidación de sueldos."
+        },
+        {
+          nombre: "Auxiliar Contable Impositivo",
+          descripcion: "Adquirí herramientas para colaborar en estudios contables y áreas administrativas de empresas. Aprendé sobre registraciones contables, documentación comercial, impuestos, conciliaciones bancarias, arqueo de caja y procedimientos administrativos e impositivos.",
+          objetivo: "Incorporar conocimientos contables e impositivos aplicables a tareas administrativas y empresariales.",
+          contenidos: [
+            "Monotributo y facturación electrónica",
+            "Ingresos Brutos",
+            "IVA e Impuesto a las Ganancias",
+            "Conciliaciones bancarias",
+            "Arqueo de caja",
+            "Liquidación de sueldos y cargas sociales"
+          ],
+          dirigido: "Personas interesadas en el área contable, administrativa e impositiva."
+        }
+      ]
+    },
 
-  administrativo: {
-    titulo: "Módulo Administrativo",
-    descripcion: "Desarrollá competencias para gestionar organizaciones, administrar recursos y desenvolverte en diferentes áreas empresariales.",
-    cursos: [
-      {
-        nombre: "Auxiliar de Recursos Humanos",
-        descripcion: "Preparáte para colaborar en la gestión del capital humano de una organización. Conocé los procesos de selección, reclutamiento, entrevistas, legajos, administración del personal, comunicación interna y capacitación.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      },
-      {
-        nombre: "Administración Agropecuaria",
-        descripcion: "Incorporá conocimientos de gestión aplicados al sector agropecuario. Aprendé sobre costos, ingresos, planificación de actividades, control de gestión, indicadores productivos, económicos y financieros, y registros de actividades agrícolas y pecuarias.",
-        objetivo: "Brindar conocimientos sobre determinación de costos, ingresos, planificación de tareas y elaboración de planes de inversión.",
-        contenidos: [
-          "Administración y control de gestión",
-          "Planificación de actividades",
-          "Indicadores productivos",
-          "Indicadores económicos y financieros",
-          "Construcción de registros",
-          "Actividades agrícolas y pecuarias"
-        ],
-        dirigido: "Productores, empleados, administradores y personas relacionadas con el sector agropecuario."
-      },
-      {
-        nombre: "Educación Financiera",
-        descripcion: "Aprendé a administrar mejor tus recursos económicos y tomar decisiones financieras conscientes. Conocé herramientas de planificación, presupuesto, ahorro, endeudamiento, objetivos financieros y organización de las finanzas personales.",
-        objetivo: "Brindar herramientas para comprender y mejorar la administración de las finanzas personales.",
-        contenidos: [
-          "Finanzas personales",
-          "Objetivos financieros personales",
-          "Creencias limitantes",
-          "Deudas buenas y malas",
-          "Emociones y deudas",
-          "El juego del dinero y el cuadrante"
-        ],
-        dirigido: "Personas interesadas en mejorar la organización y planificación de sus finanzas."
-      },
-      {
-        nombre: "Administración de Consorcios",
-        descripcion: "Conocé las herramientas necesarias para colaborar en la administración de edificios y propiedades horizontales. Aprendé sobre expensas, proveedores, documentación, mantenimiento, comunicación con propietarios y organización administrativa.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      }
-    ]
-  },
+    administrativo: {
+      titulo: "Módulo Administrativo",
+      descripcion: "Desarrollá competencias para gestionar organizaciones, administrar recursos y desenvolverte en diferentes áreas empresariales.",
+      cursos: [
+        {
+          nombre: "Auxiliar de Recursos Humanos",
+          descripcion: "Preparáte para colaborar en la gestión del capital humano de una organización. Conocé los procesos de selección, reclutamiento, entrevistas, legajos, administración del personal, comunicación interna y capacitación.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        },
+        {
+          nombre: "Administración Agropecuaria",
+          descripcion: "Incorporá conocimientos de gestión aplicados al sector agropecuario. Aprendé sobre costos, ingresos, planificación de actividades, control de gestión, indicadores productivos, económicos y financieros, y registros de actividades agrícolas y pecuarias.",
+          objetivo: "Brindar conocimientos sobre determinación de costos, ingresos, planificación de tareas y elaboración de planes de inversión.",
+          contenidos: [
+            "Administración y control de gestión",
+            "Planificación de actividades",
+            "Indicadores productivos",
+            "Indicadores económicos y financieros",
+            "Construcción de registros",
+            "Actividades agrícolas y pecuarias"
+          ],
+          dirigido: "Productores, empleados, administradores y personas relacionadas con el sector agropecuario."
+        },
+        {
+          nombre: "Educación Financiera",
+          descripcion: "Aprendé a administrar mejor tus recursos económicos y tomar decisiones financieras conscientes. Conocé herramientas de planificación, presupuesto, ahorro, endeudamiento, objetivos financieros y organización de las finanzas personales.",
+          objetivo: "Brindar herramientas para comprender y mejorar la administración de las finanzas personales.",
+          contenidos: [
+            "Finanzas personales",
+            "Objetivos financieros personales",
+            "Creencias limitantes",
+            "Deudas buenas y malas",
+            "Emociones y deudas",
+            "El juego del dinero y el cuadrante"
+          ],
+          dirigido: "Personas interesadas en mejorar la organización y planificación de sus finanzas."
+        },
+        {
+          nombre: "Administración de Consorcios",
+          descripcion: "Conocé las herramientas necesarias para colaborar en la administración de edificios y propiedades horizontales. Aprendé sobre expensas, proveedores, documentación, mantenimiento, comunicación con propietarios y organización administrativa.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        }
+      ]
+    },
 
-  informatica: {
-    titulo: "Módulo Informática",
-    descripcion: "Incorporá herramientas tecnológicas y digitales fundamentales para el trabajo y el desarrollo profesional.",
-    cursos: [
-      {
-        nombre: "Excel + Word",
-        descripcion: "Desarrollá habilidades digitales fundamentales para el ámbito laboral. Aprendé a crear documentos profesionales, elaborar planillas, utilizar fórmulas, organizar información, generar informes y optimizar tareas administrativas.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      },
-      {
-        nombre: "Diseño Gráfico",
-        descripcion: "Despertá tu creatividad y aprendé a comunicar ideas mediante recursos visuales. Incorporá conocimientos de composición, colores, tipografías, identidad visual, diseño publicitario y creación de piezas gráficas para distintos medios.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      },
-      {
-        nombre: "Office con IA",
-        descripcion: "Aprendé a utilizar herramientas de oficina combinadas con inteligencia artificial. Descubrí cómo optimizar documentos, planillas, presentaciones, informes y tareas administrativas mediante Word, Excel y asistentes inteligentes.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      },
-      {
-        nombre: "Power BI",
-        descripcion: "Transformá datos en información útil para la toma de decisiones. Aprendé a organizar bases de datos, crear indicadores, diseñar paneles interactivos, desarrollar gráficos y generar informes para analizar el rendimiento de una empresa.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      }
-    ]
-  },
+    informatica: {
+      titulo: "Módulo Informática",
+      descripcion: "Incorporá herramientas tecnológicas y digitales fundamentales para el trabajo y el desarrollo profesional.",
+      cursos: [
+        {
+          nombre: "Excel + Word",
+          descripcion: "Desarrollá habilidades digitales fundamentales para el ámbito laboral. Aprendé a crear documentos profesionales, elaborar planillas, utilizar fórmulas, organizar información, generar informes y optimizar tareas administrativas.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        },
+        {
+          nombre: "Diseño Gráfico",
+          descripcion: "Despertá tu creatividad y aprendé a comunicar ideas mediante recursos visuales. Incorporá conocimientos de composición, colores, tipografías, identidad visual, diseño publicitario y creación de piezas gráficas para distintos medios.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        },
+        {
+          nombre: "Office con IA",
+          descripcion: "Aprendé a utilizar herramientas de oficina combinadas con inteligencia artificial. Descubrí cómo optimizar documentos, planillas, presentaciones, informes y tareas administrativas mediante Word, Excel y asistentes inteligentes.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        },
+        {
+          nombre: "Power BI",
+          descripcion: "Transformá datos en información útil para la toma de decisiones. Aprendé a organizar bases de datos, crear indicadores, diseñar paneles interactivos, desarrollar gráficos y generar informes para analizar el rendimiento de una empresa.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        }
+      ]
+    },
 
-  marketing: {
-    titulo: "Módulo Marketing y Redes",
-    descripcion: "Aprendé a comunicar, crear contenido, gestionar redes sociales y desarrollar estrategias de marketing digital.",
-    cursos: [
-      {
-        nombre: "Marketing Digital",
-        descripcion: "Aprendé a desarrollar estrategias para promocionar productos y servicios en internet. Incorporá herramientas de publicidad digital, posicionamiento, comunicación comercial, análisis de resultados y estrategias para aumentar las ventas.",
-        objetivo: "Incorporar herramientas digitales para desarrollar estrategias de venta y comercialización por internet.",
-        contenidos: [],
-        dirigido: "Personas interesadas en aprender a promocionar y comercializar productos y servicios por internet."
-      },
-      {
-        nombre: "Community Manager",
-        descripcion: "Capacitate para gestionar redes sociales y construir la presencia digital de marcas y negocios. Aprendé a planificar contenidos, crear publicaciones, administrar comunidades, interactuar con seguidores, desarrollar calendarios editoriales y analizar métricas.",
-        objetivo: "",
-        contenidos: [],
-        dirigido: ""
-      }
-    ]
-  }
+    marketing: {
+      titulo: "Módulo Marketing y Redes",
+      descripcion: "Aprendé a comunicar, crear contenido, gestionar redes sociales y desarrollar estrategias de marketing digital.",
+      cursos: [
+        {
+          nombre: "Marketing Digital",
+          descripcion: "Aprendé a desarrollar estrategias para promocionar productos y servicios en internet. Incorporá herramientas de publicidad digital, posicionamiento, comunicación comercial, análisis de resultados y estrategias para aumentar las ventas.",
+          objetivo: "Incorporar herramientas digitales para desarrollar estrategias de venta y comercialización por internet.",
+          contenidos: [],
+          dirigido: "Personas interesadas en aprender a promocionar y comercializar productos y servicios por internet."
+        },
+        {
+          nombre: "Community Manager",
+          descripcion: "Capacitate para gestionar redes sociales y construir la presencia digital de marcas y negocios. Aprendé a planificar contenidos, crear publicaciones, administrar comunidades, interactuar con seguidores, desarrollar calendarios editoriales y analizar métricas.",
+          objetivo: "",
+          contenidos: [],
+          dirigido: ""
+        }
+      ]
+    }
 
-};
+  };
 
+  /* =====================================
+     REFERENCIAS A LAS VISTAS
+  ===================================== */
 
-  /* ABRIR MÓDULO */
+  const vistaModulos = document.getElementById("cc-modules-view");
+  const vistaCursos = document.getElementById("cc-courses-view");
+  const vistaDetalle = document.getElementById("cc-course-detail-view");
 
-  window.ccAbrirModulo = function(id) {
+  const tituloModulo = document.getElementById("cc-module-title");
+  const descripcionModulo = document.getElementById("cc-module-description");
+  const listaCursos = document.getElementById("cc-courses-list");
+  const detalleCurso = document.getElementById("cc-course-detail");
 
-    const modulo = modulos[id];
+  let moduloActual = null;
+
+  /* =====================================
+     FUNCIÓN PARA MOSTRAR UN MÓDULO
+  ===================================== */
+
+  window.ccAbrirModulo = function(clave) {
+
+    const modulo = modulos[clave];
 
     if (!modulo) return;
 
-    document.getElementById("cc-modules-view").style.display = "none";
+    moduloActual = clave;
 
-    document.getElementById("cc-courses-view").style.display = "block";
+    vistaModulos.style.display = "none";
+    vistaDetalle.style.display = "none";
+    vistaCursos.style.display = "block";
 
-    document.getElementById("cc-module-title").textContent = modulo.titulo;
+    tituloModulo.textContent = modulo.titulo;
+    descripcionModulo.textContent = modulo.descripcion;
 
-    document.getElementById("cc-module-description").textContent = modulo.descripcion;
+    listaCursos.innerHTML = "";
 
-    const lista = document.getElementById("cc-courses-list");
-
-    lista.innerHTML = "";
-
-    modulo.cursos.forEach(nombre => {
-
-      const tarjeta = document.createElement("div");
-
-      tarjeta.className = "cc-course";
-
-      const titulo = document.createElement("h4");
-
-      titulo.textContent = nombre;
+    modulo.cursos.forEach(function(curso, indice) {
 
       const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "cc-course-card";
+      boton.innerHTML = `
+        <div class="cc-course-card-info">
+          <h4>${escaparHTML(curso.nombre)}</h4>
+          <span>VER INFORMACIÓN →</span>
+        </div>
+      `;
 
-      boton.className = "cc-course-button";
+      boton.addEventListener("click", function() {
+        ccAbrirCurso(indice);
+      });
 
-      boton.textContent = "Más información";
-
-      boton.onclick = function() {
-
-        if (typeof window.abrirCurso === "function") {
-
-          window.abrirCurso(nombre);
-
-        } else {
-
-          alert("La información de este curso todavía no está disponible.");
-
-        }
-
-      };
-
-      tarjeta.append(titulo, boton);
-
-      lista.appendChild(tarjeta);
+      listaCursos.appendChild(boton);
 
     });
 
-    document.getElementById("cursos").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-
+    vistaCursos.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  /* =====================================
+     FUNCIÓN PARA ABRIR UN CURSO
+  ===================================== */
 
-  /* VOLVER A LOS MÓDULOS */
+  function ccAbrirCurso(indice) {
+
+    const modulo = modulos[moduloActual];
+
+    if (!modulo || !modulo.cursos[indice]) return;
+
+    const curso = modulo.cursos[indice];
+
+    vistaCursos.style.display = "none";
+    vistaModulos.style.display = "none";
+    vistaDetalle.style.display = "block";
+
+    let contenido = `
+      <div class="cc-module-heading">
+        <h3>${escaparHTML(curso.nombre)}</h3>
+      </div>
+
+      <div class="cc-course-description">
+        <h4>Descripción del curso</h4>
+        <p>${escaparHTML(curso.descripcion)}</p>
+      </div>
+    `;
+
+    if (curso.objetivo && curso.objetivo.trim() !== "") {
+      contenido += `
+        <div class="cc-course-section">
+          <h4>Objetivo</h4>
+          <p>${escaparHTML(curso.objetivo)}</p>
+        </div>
+      `;
+    }
+
+    if (curso.contenidos && curso.contenidos.length > 0) {
+      contenido += `
+        <div class="cc-course-section">
+          <h4>Contenidos</h4>
+          <ul>
+            ${curso.contenidos.map(function(item) {
+              return `<li>${escaparHTML(item)}</li>`;
+            }).join("")}
+          </ul>
+        </div>
+      `;
+    }
+
+    if (curso.dirigido && curso.dirigido.trim() !== "") {
+      contenido += `
+        <div class="cc-course-section">
+          <h4>¿A quién está dirigido?</h4>
+          <p>${escaparHTML(curso.dirigido)}</p>
+        </div>
+      `;
+    }
+
+    detalleCurso.innerHTML = contenido;
+
+    vistaDetalle.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* =====================================
+     VOLVER A LOS MÓDULOS
+  ===================================== */
 
   window.ccVolver = function() {
 
-    document.getElementById("cc-courses-view").style.display = "none";
+    vistaCursos.style.display = "none";
+    vistaDetalle.style.display = "none";
+    vistaModulos.style.display = "block";
 
-    document.getElementById("cc-modules-view").style.display = "block";
+    moduloActual = null;
 
-    document.getElementById("cursos").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+    vistaModulos.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  /* =====================================
+     VOLVER A LOS CURSOS
+  ===================================== */
+
+  window.ccVolverCursos = function() {
+
+    vistaDetalle.style.display = "none";
+    vistaModulos.style.display = "none";
+    vistaCursos.style.display = "block";
+
+    vistaCursos.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  /* =====================================
+     PROTEGER LOS TEXTOS DEL HTML
+  ===================================== */
+
+  function escaparHTML(texto) {
+
+    return String(texto || "").replace(/[&<>"']/g, function(caracter) {
+      const equivalencias = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      };
+
+      return equivalencias[caracter];
     });
 
-  };
+  }
 
 })();
 </script>
+
 
 
 </section>
