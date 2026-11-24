@@ -940,69 +940,181 @@ nav ul li a:hover {
 
     /* MÓDULO ESCOLAR */
 
-    escolar: {
-      titulo: "Módulo Escolar",
-      descripcion: "Formación y capacitación para desempeñarse en instituciones y organizaciones del ámbito educativo.",
-      cursos: [
-        "Secretariado Docente",
-        "Preceptor"
-      ]
-    },
+const modulos = {
 
+  escolar: {
+    titulo: "Módulo Escolar",
+    descripcion: "Formación y capacitación para desempeñarse en instituciones y organizaciones del ámbito educativo.",
+    cursos: [
+      {
+        nombre: "Secretariado Docente",
+        descripcion: "Capacitate para desempeñarte en tareas administrativas y organizativas dentro de instituciones educativas. Aprendé sobre documentación escolar, gestión de legajos, comunicación institucional y organización de procesos administrativos.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      },
+      {
+        nombre: "Preceptor",
+        descripcion: "Incorporá herramientas para acompañar las trayectorias educativas de los estudiantes. Conocé las funciones del preceptor, la convivencia escolar, el seguimiento de asistencia, la comunicación con docentes y familias y la organización institucional.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      }
+    ]
+  },
 
-    /* MÓDULO CONTABLE E IMPOSITIVO */
+  contable: {
+    titulo: "Módulo Contable e Impositivo",
+    descripcion: "Aprendé a gestionar las principales obligaciones fiscales de pequeños contribuyentes. Incorporá conocimientos sobre CUIT, clave fiscal, inscripción al Monotributo, categorías, recategorizaciones y emisión de comprobantes electrónicos.",
+    cursos: [
+      {
+        nombre: "Monotributo y Facturación Electrónica",
+        descripcion: "Aprendé a gestionar las principales obligaciones fiscales de pequeños contribuyentes. Incorporá conocimientos sobre CUIT, clave fiscal, inscripción al Monotributo, categorías, recategorizaciones y emisión de comprobantes electrónicos..",
+        objetivo: "Brindar herramientas para conocer y realizar los procedimientos básicos relacionados con el Monotributo.",
+        contenidos: [
+          "Obtención de clave fiscal y CUIT",
+          "Alta en Monotributo",
+          "Facturación electrónica",
+          "Recategorización"
+        ],
+        dirigido: "Personas interesadas en aprender sobre trámites fiscales y facturación."
+      },
+      {
+        nombre: "Liquidación de Sueldos",
+        descripcion: "Desarrollá conocimientos para realizar liquidaciones salariales y comprender la administración laboral. Aprendé sobre haberes, descuentos, vacaciones, aguinaldo, cargas sociales, liquidación de personal y normativa laboral.",
+        objetivo: "Brindar herramientas para comprender los conceptos y procedimientos de la liquidación de haberes.",
+        contenidos: [
+          "Conceptos básicos de liquidación",
+          "Cálculo de vacaciones y SAC",
+          "Liquidación para empleadas domésticas",
+          "Formulario F.931",
+          "Marco legal"
+        ],
+        dirigido: "Personas interesadas en adquirir conocimientos sobre administración laboral y liquidación de sueldos."
+      },
+      {
+        nombre: "Auxiliar Contable Impositivo",
+        descripcion: "Adquirí herramientas para colaborar en estudios contables y áreas administrativas de empresas. Aprendé sobre registraciones contables, documentación comercial, impuestos, conciliaciones bancarias, arqueo de caja y procedimientos administrativos e impositivos.",
+        objetivo: "Incorporar conocimientos contables e impositivos aplicables a tareas administrativas y empresariales.",
+        contenidos: [
+          "Monotributo y facturación electrónica",
+          "Ingresos Brutos",
+          "IVA e Impuesto a las Ganancias",
+          "Conciliaciones bancarias",
+          "Arqueo de caja",
+          "Liquidación de sueldos y cargas sociales"
+        ],
+        dirigido: "Personas interesadas en el área contable, administrativa e impositiva."
+      }
+    ]
+  },
 
-    contable: {
-      titulo: "Módulo Contable e Impositivo",
-      descripcion: "Capacitación en herramientas contables, impositivas y administrativas para el ámbito laboral y empresarial.",
-      cursos: [
-        "Monotributo y Facturación Electrónica",
-        "Liquidación de Sueldos",
-        "Auxiliar Contable Impositivo"
-      ]
-    },
+  administrativo: {
+    titulo: "Módulo Administrativo",
+    descripcion: "Desarrollá competencias para gestionar organizaciones, administrar recursos y desenvolverte en diferentes áreas empresariales.",
+    cursos: [
+      {
+        nombre: "Auxiliar de Recursos Humanos",
+        descripcion: "Preparáte para colaborar en la gestión del capital humano de una organización. Conocé los procesos de selección, reclutamiento, entrevistas, legajos, administración del personal, comunicación interna y capacitación.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      },
+      {
+        nombre: "Administración Agropecuaria",
+        descripcion: "Incorporá conocimientos de gestión aplicados al sector agropecuario. Aprendé sobre costos, ingresos, planificación de actividades, control de gestión, indicadores productivos, económicos y financieros, y registros de actividades agrícolas y pecuarias.",
+        objetivo: "Brindar conocimientos sobre determinación de costos, ingresos, planificación de tareas y elaboración de planes de inversión.",
+        contenidos: [
+          "Administración y control de gestión",
+          "Planificación de actividades",
+          "Indicadores productivos",
+          "Indicadores económicos y financieros",
+          "Construcción de registros",
+          "Actividades agrícolas y pecuarias"
+        ],
+        dirigido: "Productores, empleados, administradores y personas relacionadas con el sector agropecuario."
+      },
+      {
+        nombre: "Educación Financiera",
+        descripcion: "Aprendé a administrar mejor tus recursos económicos y tomar decisiones financieras conscientes. Conocé herramientas de planificación, presupuesto, ahorro, endeudamiento, objetivos financieros y organización de las finanzas personales.",
+        objetivo: "Brindar herramientas para comprender y mejorar la administración de las finanzas personales.",
+        contenidos: [
+          "Finanzas personales",
+          "Objetivos financieros personales",
+          "Creencias limitantes",
+          "Deudas buenas y malas",
+          "Emociones y deudas",
+          "El juego del dinero y el cuadrante"
+        ],
+        dirigido: "Personas interesadas en mejorar la organización y planificación de sus finanzas."
+      },
+      {
+        nombre: "Administración de Consorcios",
+        descripcion: "Conocé las herramientas necesarias para colaborar en la administración de edificios y propiedades horizontales. Aprendé sobre expensas, proveedores, documentación, mantenimiento, comunicación con propietarios y organización administrativa.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      }
+    ]
+  },
 
+  informatica: {
+    titulo: "Módulo Informática",
+    descripcion: "Incorporá herramientas tecnológicas y digitales fundamentales para el trabajo y el desarrollo profesional.",
+    cursos: [
+      {
+        nombre: "Excel + Word",
+        descripcion: "Desarrollá habilidades digitales fundamentales para el ámbito laboral. Aprendé a crear documentos profesionales, elaborar planillas, utilizar fórmulas, organizar información, generar informes y optimizar tareas administrativas.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      },
+      {
+        nombre: "Diseño Gráfico",
+        descripcion: "Despertá tu creatividad y aprendé a comunicar ideas mediante recursos visuales. Incorporá conocimientos de composición, colores, tipografías, identidad visual, diseño publicitario y creación de piezas gráficas para distintos medios.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      },
+      {
+        nombre: "Office con IA",
+        descripcion: "Aprendé a utilizar herramientas de oficina combinadas con inteligencia artificial. Descubrí cómo optimizar documentos, planillas, presentaciones, informes y tareas administrativas mediante Word, Excel y asistentes inteligentes.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      },
+      {
+        nombre: "Power BI",
+        descripcion: "Transformá datos en información útil para la toma de decisiones. Aprendé a organizar bases de datos, crear indicadores, diseñar paneles interactivos, desarrollar gráficos y generar informes para analizar el rendimiento de una empresa.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      }
+    ]
+  },
 
-    /* MÓDULO ADMINISTRATIVO */
+  marketing: {
+    titulo: "Módulo Marketing y Redes",
+    descripcion: "Aprendé a comunicar, crear contenido, gestionar redes sociales y desarrollar estrategias de marketing digital.",
+    cursos: [
+      {
+        nombre: "Marketing Digital",
+        descripcion: "Aprendé a desarrollar estrategias para promocionar productos y servicios en internet. Incorporá herramientas de publicidad digital, posicionamiento, comunicación comercial, análisis de resultados y estrategias para aumentar las ventas.",
+        objetivo: "Incorporar herramientas digitales para desarrollar estrategias de venta y comercialización por internet.",
+        contenidos: [],
+        dirigido: "Personas interesadas en aprender a promocionar y comercializar productos y servicios por internet."
+      },
+      {
+        nombre: "Community Manager",
+        descripcion: "Capacitate para gestionar redes sociales y construir la presencia digital de marcas y negocios. Aprendé a planificar contenidos, crear publicaciones, administrar comunidades, interactuar con seguidores, desarrollar calendarios editoriales y analizar métricas.",
+        objetivo: "",
+        contenidos: [],
+        dirigido: ""
+      }
+    ]
+  }
 
-    administrativo: {
-      titulo: "Módulo Administrativo",
-      descripcion: "Desarrollá competencias para gestionar organizaciones, administrar recursos y desenvolverte en diferentes áreas empresariales.",
-      cursos: [
-        "Auxiliar de Recursos Humanos",
-        "Administración Agropecuaria",
-        "Educación Financiera",
-        "Administración de Consorcios"
-      ]
-    },
-
-
-    /* MÓDULO INFORMÁTICA */
-
-    informatica: {
-      titulo: "Módulo Informática",
-      descripcion: "Incorporá herramientas tecnológicas y digitales fundamentales para el trabajo y el desarrollo profesional.",
-      cursos: [
-        "Excel + Word",
-        "Diseño Gráfico",
-        "Office con IA",
-        "Power BI"
-      ]
-    },
-
-
-    /* MÓDULO MARKETING Y REDES */
-
-    marketing: {
-      titulo: "Módulo Marketing y Redes",
-      descripcion: "Aprendé a comunicar, crear contenido, gestionar redes sociales y desarrollar estrategias de marketing digital.",
-      cursos: [
-        "Marketing Digital",
-        "Community Manager"
-      ]
-    }
-
-  };
+};
 
 
   /* ABRIR MÓDULO */
