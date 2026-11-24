@@ -842,6 +842,13 @@ nav ul li a:hover {
 
   <div id="cc-modules-view">
 
+    
+<div class="cc-catalogo">
+
+  <!-- VISTA PRINCIPAL DE MÓDULOS -->
+
+  <div id="cc-modules-view">
+
     <div class="cc-header">
       <h3>Áreas de capacitación</h3>
       <p>Conocé nuestra propuesta académica y encontrá la capacitación ideal para tu desarrollo profesional.</p>
@@ -856,43 +863,19 @@ nav ul li a:hover {
         </div>
         <div class="cc-info">
           <h4>Módulo Escolar</h4>
-          <p>Capacitación y formación para el ámbito educativo.</p>
+          <p>Formación y capacitación para el ámbito educativo.</p>
           <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
       </button>
 
-      <!-- CONTABLE -->
+      <!-- CONTABLE E IMPOSITIVO -->
       <button class="cc-module" onclick="ccAbrirModulo('contable')">
         <div class="cc-image">
           <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800" alt="Contabilidad e impuestos" loading="lazy">
         </div>
         <div class="cc-info">
-          <h4>Contable e Impositivo</h4>
-          <p>Administración, gestión contable e impuestos.</p>
-          <span class="cc-explore">EXPLORAR MÓDULO →</span>
-        </div>
-      </button>
-
-      <!-- MARKETING -->
-      <button class="cc-module" onclick="ccAbrirModulo('marketing')">
-        <div class="cc-image">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Marketing digital" loading="lazy">
-        </div>
-        <div class="cc-info">
-          <h4>Módulo Marketing</h4>
-          <p>Comunicación, marketing y estrategias digitales.</p>
-          <span class="cc-explore">EXPLORAR MÓDULO →</span>
-        </div>
-      </button>
-
-      <!-- INFORMÁTICA -->
-      <button class="cc-module" onclick="ccAbrirModulo('informatica')">
-        <div class="cc-image">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Informática y tecnología" loading="lazy">
-        </div>
-        <div class="cc-info">
-          <h4>Módulo Informática</h4>
-          <p>Tecnología, computación y herramientas digitales.</p>
+          <h4>Módulo Contable e Impositivo</h4>
+          <p>Contabilidad, impuestos y gestión laboral.</p>
           <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
       </button>
@@ -904,19 +887,31 @@ nav ul li a:hover {
         </div>
         <div class="cc-info">
           <h4>Módulo Administrativo</h4>
-          <p>Gestión, organización y administración de empresas.</p>
+          <p>Gestión empresarial, recursos humanos y administración.</p>
           <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
       </button>
 
-      <!-- FINANCIERO -->
-      <button class="cc-module" onclick="ccAbrirModulo('financiero')">
+      <!-- INFORMÁTICA -->
+      <button class="cc-module" onclick="ccAbrirModulo('informatica')">
         <div class="cc-image">
-          <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=800" alt="Finanzas" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Informática y tecnología" loading="lazy">
         </div>
         <div class="cc-info">
-          <h4>Módulo Financiero</h4>
-          <p>Finanzas, inversiones y gestión de recursos económicos.</p>
+          <h4>Módulo Informática</h4>
+          <p>Tecnología, herramientas digitales e inteligencia artificial.</p>
+          <span class="cc-explore">EXPLORAR MÓDULO →</span>
+        </div>
+      </button>
+
+      <!-- MARKETING -->
+      <button class="cc-module" onclick="ccAbrirModulo('marketing')">
+        <div class="cc-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Marketing digital" loading="lazy">
+        </div>
+        <div class="cc-info">
+          <h4>Módulo Marketing y Redes</h4>
+          <p>Marketing digital, comunicación y gestión profesional de redes sociales.</p>
           <span class="cc-explore">EXPLORAR MÓDULO →</span>
         </div>
       </button>
@@ -924,7 +919,8 @@ nav ul li a:hover {
     </div>
   </div>
 
-  <!-- CURSOS DE CADA MÓDULO -->
+
+  <!-- VISTA DE CURSOS DE CADA MÓDULO -->
 
   <div id="cc-courses-view" class="cc-courses-view" style="display:none;">
 
@@ -943,113 +939,131 @@ nav ul li a:hover {
 
 </div>
 
+
 <script>
 (function() {
 
   const modulos = {
 
+    /* MÓDULO ESCOLAR */
+
     escolar: {
       titulo: "Módulo Escolar",
-      descripcion: "Formación para el ámbito educativo.",
+      descripcion: "Formación y capacitación para desempeñarse en instituciones y organizaciones del ámbito educativo.",
       cursos: [
-        "Preceptor",
-        "Auxiliar de Jardín Maternal"
+        "Secretariado Docente",
+        "Preceptor"
       ]
     },
+
+
+    /* MÓDULO CONTABLE E IMPOSITIVO */
 
     contable: {
       titulo: "Módulo Contable e Impositivo",
-      descripcion: "Capacitación en administración y gestión contable.",
+      descripcion: "Capacitación en herramientas contables, impositivas y administrativas para el ámbito laboral y empresarial.",
       cursos: [
-        "Secretariado Contable",
-        "Taller contable impositivo",
-        "Taller de Monotributo & Facturación Electrónica",
+        "Monotributo y Facturación Electrónica",
         "Liquidación de Sueldos",
-        "Excel para Empresas",
-        "Administración de Empresas Agropecuarias"
+        "Auxiliar Contable Impositivo"
       ]
     },
 
-    marketing: {
-      titulo: "Módulo Marketing y Redes",
-      descripcion: "Desarrollá habilidades de comunicación y marketing.",
-      cursos: [
-        "Marketing Digital"
-      ]
-    },
 
-    informatica: {
-      titulo: "Módulo Informática",
-      descripcion: "Tecnología y herramientas informáticas.",
-      cursos: [
-        "Excel + Word",
-        "Diseño Gráfico"
-      ]
-    },
+    /* MÓDULO ADMINISTRATIVO */
 
     administrativo: {
       titulo: "Módulo Administrativo",
-      descripcion: "Desarrollá habilidades para gestionar, organizar y administrar empresas y organizaciones.",
+      descripcion: "Desarrollá competencias para gestionar organizaciones, administrar recursos y desenvolverte en diferentes áreas empresariales.",
       cursos: [
-        "Secretariado Administrativo",
-        "Administración de Empresas",
-        "Auxiliar Administrativo",
-        "Facturación y Gestión Administrativa",
-        "Liquidación de Sueldos"
+        "Auxiliar de Recursos Humanos",
+        "Administración Agropecuaria",
+        "Educación Financiera",
+        "Administración de Consorcios"
       ]
     },
 
-    financiero: {
-      titulo: "Módulo Financiero",
-      descripcion: "Adquirí conocimientos para gestionar recursos económicos, organizar finanzas y tomar decisiones financieras.",
+
+    /* MÓDULO INFORMÁTICA */
+
+    informatica: {
+      titulo: "Módulo Informática",
+      descripcion: "Incorporá herramientas tecnológicas y digitales fundamentales para el trabajo y el desarrollo profesional.",
       cursos: [
-        "Educación Financiera",
-        "Finanzas Personales",
-        "Monotributo y Gestión Impositiva",
-        "Costos e Ingresos",
-        "Administración Financiera"
+        "Excel + Word",
+        "Diseño Gráfico",
+        "Office con IA",
+        "Power BI"
+      ]
+    },
+
+
+    /* MÓDULO MARKETING Y REDES */
+
+    marketing: {
+      titulo: "Módulo Marketing y Redes",
+      descripcion: "Aprendé a comunicar, crear contenido, gestionar redes sociales y desarrollar estrategias de marketing digital.",
+      cursos: [
+        "Marketing Digital",
+        "Community Manager"
       ]
     }
 
   };
 
+
+  /* ABRIR MÓDULO */
+
   window.ccAbrirModulo = function(id) {
 
     const modulo = modulos[id];
+
     if (!modulo) return;
 
     document.getElementById("cc-modules-view").style.display = "none";
+
     document.getElementById("cc-courses-view").style.display = "block";
 
     document.getElementById("cc-module-title").textContent = modulo.titulo;
+
     document.getElementById("cc-module-description").textContent = modulo.descripcion;
 
     const lista = document.getElementById("cc-courses-list");
+
     lista.innerHTML = "";
 
     modulo.cursos.forEach(nombre => {
 
       const tarjeta = document.createElement("div");
+
       tarjeta.className = "cc-course";
 
       const titulo = document.createElement("h4");
+
       titulo.textContent = nombre;
 
       const boton = document.createElement("button");
+
       boton.className = "cc-course-button";
+
       boton.textContent = "Más información";
 
       boton.onclick = function() {
 
         if (typeof window.abrirCurso === "function") {
+
           window.abrirCurso(nombre);
+
         } else {
+
           alert("La información de este curso todavía no está disponible.");
+
         }
 
       };
 
       tarjeta.append(titulo, boton);
+
       lista.appendChild(tarjeta);
 
     });
@@ -1061,9 +1075,13 @@ nav ul li a:hover {
 
   };
 
+
+  /* VOLVER A LOS MÓDULOS */
+
   window.ccVolver = function() {
 
     document.getElementById("cc-courses-view").style.display = "none";
+
     document.getElementById("cc-modules-view").style.display = "block";
 
     document.getElementById("cursos").scrollIntoView({
