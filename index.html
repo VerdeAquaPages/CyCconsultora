@@ -952,13 +952,14 @@ nav ul li a:hover {
           contenidos: [],
           dirigido: ""
         },
-        {
-          nombre: "Preceptor",
-          descripcion: "Incorporá herramientas para acompañar las trayectorias educativas de los estudiantes. Conocé las funciones del preceptor, la convivencia escolar, el seguimiento de asistencia, la comunicación con docentes y familias y la organización institucional.",
-          objetivo: "",
-          contenidos: [],
-          dirigido: ""
-        }
+{
+  nombre: "Preceptor",
+  descripcion: "Incorporá herramientas para acompañar las trayectorias educativas de los estudiantes. Conocé las funciones del preceptor, la convivencia escolar, el seguimiento de asistencia, la comunicación con docentes y familias y la organización institucional.",
+  noDisponible: true,
+  objetivo: "",
+  contenidos: [],
+  dirigido: ""
+}
       ]
     },
 
@@ -1152,17 +1153,33 @@ nav ul li a:hover {
 
       const boton = document.createElement("button");
       boton.type = "button";
-      boton.className = "cc-course-card";
-      boton.innerHTML = `
-        <div class="cc-course-card-info">
-          <h4>${escaparHTML(curso.nombre)}</h4>
-          <span>VER INFORMACIÓN →</span>
-        </div>
-      `;
+    
+boton.className = "cc-course-card";
 
-      boton.addEventListener("click", function() {
-        ccAbrirCurso(indice);
-      });
+if (curso.noDisponible) {
+  boton.disabled = true;
+  boton.classList.add("cc-course-unavailable");
+
+  boton.innerHTML = `
+    <div class="cc-course-card-info">
+      <h4>${escaparHTML(curso.nombre)}</h4>
+      <span class="cc-unavailable-label">NO DISPONIBLE</span>
+    </div>
+  `;
+} else {
+  boton.innerHTML = `
+    <div class="cc-course-card-info">
+      <h4>${escaparHTML(curso.nombre)}</h4>
+      <span>VER INFORMACIÓN →</span>
+    </div>
+  `;
+
+  boton.addEventListener("click", function() {
+    ccAbrirCurso(indice);
+  });
+}
+
+listaCursos.appendChild(boton);
 
       listaCursos.appendChild(boton);
 
