@@ -923,21 +923,13 @@ nav ul li a:hover {
 
   </div>
 
-  <!-- VISTA DEL DETALLE DE CADA CURSO -->
-  <div id="cc-course-detail-view" style="display:none;">
-
-    <button class="cc-back" onclick="ccVolverCursos()">
-      ← Volver a los cursos
-    </button>
-
-    <div id="cc-course-detail"></div>
-
-  </div>
-
 </div>
 
 <script>
 (function() {
+
+  // REEMPLAZÁ este número por el WhatsApp de C&C, con código de país y sin + ni espacios.
+  const whatsappInscripciones = "549XXXXXXXXXX";
 
   /* =====================================
      INFORMACIÓN DE LOS MÓDULOS Y CURSOS
@@ -952,6 +944,10 @@ nav ul li a:hover {
         {
           nombre: "Secretariado Docente",
           descripcion: "Capacitate para desempeñarte en tareas administrativas y organizativas dentro de instituciones educativas. Aprendé sobre documentación escolar, gestión de legajos, comunicación institucional y organización de procesos administrativos.",
+          duracion: "10 meses",
+          modalidad: "Presencial",
+          certificacion: "Avalada por Consultora C&C",
+          icono: "🎓",
           objetivo: "",
           contenidos: [],
           dirigido: ""
@@ -1125,12 +1121,10 @@ nav ul li a:hover {
 
   const vistaModulos = document.getElementById("cc-modules-view");
   const vistaCursos = document.getElementById("cc-courses-view");
-  const vistaDetalle = document.getElementById("cc-course-detail-view");
 
   const tituloModulo = document.getElementById("cc-module-title");
   const descripcionModulo = document.getElementById("cc-module-description");
   const listaCursos = document.getElementById("cc-courses-list");
-  const detalleCurso = document.getElementById("cc-course-detail");
 
   let moduloActual = null;
 
@@ -1147,7 +1141,6 @@ nav ul li a:hover {
     moduloActual = clave;
 
     vistaModulos.style.display = "none";
-    vistaDetalle.style.display = "none";
     vistaCursos.style.display = "block";
 
     tituloModulo.textContent = modulo.titulo;
@@ -1185,23 +1178,45 @@ nav ul li a:hover {
   function ccAbrirCurso(indice) {
 
     const modulo = modulos[moduloActual];
-
     if (!modulo || !modulo.cursos[indice]) return;
 
     const curso = modulo.cursos[indice];
-
-    vistaCursos.style.display = "none";
-    vistaModulos.style.display = "none";
-    vistaDetalle.style.display = "block";
+    const duracion = curso.duracion || "Consultar";
+    const modalidad = curso.modalidad || "Consultar";
+    const certificacion = curso.certificacion || "Consultar";
+    const icono = curso.icono || "🎓";
+    const mensaje = encodeURIComponent("Hola, quisiera recibir información para inscribirme en el curso " + curso.nombre + ".");
+    const enlaceWhatsApp = "https://wa.me/" + whatsappInscripciones + "?text=" + mensaje;
 
     let contenido = `
-      <div class="cc-module-heading">
-        <h3>${escaparHTML(curso.nombre)}</h3>
+      <div class="cc-modal-header">
+        <div class="cc-modal-title-wrap">
+          <span class="cc-modal-main-icon">${icono}</span>
+          <div>
+            <span class="cc-modal-eyebrow">CAPACITACIÓN PROFESIONAL</span>
+            <h3>${escaparHTML(curso.nombre)}</h3>
+          </div>
+        </div>
+        <button type="button" class="cc-modal-close" aria-label="Cerrar ventana" onclick="ccCerrarCurso()">&times;</button>
       </div>
 
-      <div class="cc-course-description">
-        <h4>Descripción del curso</h4>
-        <p>${escaparHTML(curso.descripcion)}</p>
+      <div class="cc-modal-info-list">
+        <div class="cc-modal-info-row cc-modal-description-row">
+          <span class="cc-modal-info-icon">▤</span>
+          <div><h4>Descripción</h4><p>${escaparHTML(curso.descripcion)}</p></div>
+        </div>
+        <div class="cc-modal-info-row">
+          <span class="cc-modal-info-icon">◷</span>
+          <div><h4>Duración</h4><p>${escaparHTML(duracion)}</p></div>
+        </div>
+        <div class="cc-modal-info-row">
+          <span class="cc-modal-info-icon">▱</span>
+          <div><h4>Modalidad</h4><p>${escaparHTML(modalidad)}</p></div>
+        </div>
+        <div class="cc-modal-info-row">
+          <span class="cc-modal-info-icon">♜</span>
+          <div><h4>Certificación</h4><p>${escaparHTML(certificacion)}</p></div>
+        </div>
       </div>
     `;
 
@@ -1236,10 +1251,66 @@ nav ul li a:hover {
       `;
     }
 
-    detalleCurso.innerHTML = contenido;
+    contenido += `
+      <a class="cc-modal-cta" href="${enlaceWhatsApp}" target="_blank" rel="noopener">
+        <span class="cc-whatsapp-symbol">◉</span> Inscribirme
+      </a>
+    `;
 
-    vistaDetalle.scrollIntoView({ behavior: "smooth", block: "start" });
+    ccMostrarModal(contenido);
   }
+
+  /* =====================================
+     VENTANA EMERGENTE DEL CURSO
+  ===================================== */
+
+  function ccCrearModal() {
+    let modal = document.getElementById("cc-course-modal");
+
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "cc-course-modal";
+      modal.className = "cc-course-modal";
+      modal.setAttribute("aria-hidden", "true");
+      modal.innerHTML = `
+        <div class="cc-modal-backdrop" onclick="ccCerrarCurso()"></div>
+        <div class="cc-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cc-modal-title">
+          <div id="cc-course-modal-content"></div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    return modal;
+  }
+
+  function ccMostrarModal(contenido) {
+    const modal = ccCrearModal();
+    const zonaContenido = modal.querySelector("#cc-course-modal-content");
+    zonaContenido.innerHTML = contenido;
+
+    const titulo = zonaContenido.querySelector(".cc-modal-header h3");
+    if (titulo) titulo.id = "cc-modal-title";
+
+    modal.classList.add("cc-modal-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("cc-modal-no-scroll");
+  }
+
+  window.ccCerrarCurso = function() {
+    const modal = document.getElementById("cc-course-modal");
+    if (!modal) return;
+
+    modal.classList.remove("cc-modal-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("cc-modal-no-scroll");
+  };
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      window.ccCerrarCurso();
+    }
+  });
 
   /* =====================================
      VOLVER A LOS MÓDULOS
@@ -1248,7 +1319,6 @@ nav ul li a:hover {
   window.ccVolver = function() {
 
     vistaCursos.style.display = "none";
-    vistaDetalle.style.display = "none";
     vistaModulos.style.display = "block";
 
     moduloActual = null;
@@ -1262,7 +1332,6 @@ nav ul li a:hover {
 
   window.ccVolverCursos = function() {
 
-    vistaDetalle.style.display = "none";
     vistaModulos.style.display = "none";
     vistaCursos.style.display = "block";
 
@@ -1336,11 +1405,240 @@ estilosCursosCC.textContent = `
     padding: 20px;
   }
 }
+
+/* VENTANA EMERGENTE CON LA INFORMACIÓN DEL CURSO */
+.cc-modal-no-scroll {
+  overflow: hidden;
+}
+
+.cc-course-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.cc-course-modal.cc-modal-open {
+  display: flex;
+}
+
+.cc-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 24, 43, .72);
+  backdrop-filter: blur(4px);
+}
+
+.cc-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 650px);
+  max-height: min(85vh, 760px);
+  overflow-y: auto;
+  background: #ffffff;
+  color: #26384a;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, .30);
+  animation: ccModalEntrada .22s ease-out;
+}
+
+.cc-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #e5edf4;
+}
+
+.cc-modal-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: #1689c4;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.cc-modal-header h3 {
+  margin: 0;
+  color: #123f78;
+  font-size: clamp(22px, 4vw, 29px);
+  line-height: 1.2;
+}
+
+.cc-modal-close {
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf4f9;
+  color: #123f78;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.cc-modal-close:hover {
+  background: #123f78;
+  color: #ffffff;
+}
+
+.cc-course-description,
+.cc-course-section {
+  margin: 0 0 20px;
+  padding: 18px 20px;
+  background: #f5f8fb;
+  border: 1px solid #e8eff5;
+  border-radius: 13px;
+}
+
+.cc-course-description h4,
+.cc-course-section h4 {
+  margin: 0 0 9px;
+  color: #123f78;
+  font-size: 16px;
+}
+
+.cc-course-description p,
+.cc-course-section p {
+  margin: 0;
+  color: #526477;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cc-course-section ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #526477;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+
+
+.cc-modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+}
+
+.cc-modal-main-icon {
+  flex: 0 0 48px;
+  font-size: 39px;
+  line-height: 1;
+}
+
+.cc-modal-header h3 {
+  margin: 2px 0 0;
+  color: #2057a5;
+  font-size: clamp(21px, 3.8vw, 27px);
+  line-height: 1.2;
+}
+
+.cc-modal-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 0 5px;
+}
+
+.cc-modal-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.cc-modal-info-icon {
+  flex: 0 0 27px;
+  color: #2057a5;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.cc-modal-info-row h4 {
+  margin: 0 0 2px;
+  color: #2057a5;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.cc-modal-info-row p {
+  margin: 0;
+  color: #35465b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cc-modal-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: min(100%, 270px);
+  margin: 25px auto 0;
+  padding: 13px 20px;
+  border-radius: 11px;
+  background: #2057b5;
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none !important;
+  box-shadow: 0 5px 14px rgba(32, 87, 181, .2);
+  transition: .2s ease;
+}
+
+.cc-modal-cta:hover {
+  background: #16458f;
+  transform: translateY(-2px);
+}
+
+.cc-whatsapp-symbol {
+  font-size: 19px;
+}
+
+@keyframes ccModalEntrada {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media(max-width:600px) {
+  .cc-course-modal {
+    padding: 12px;
+  }
+
+  .cc-modal-dialog {
+    max-height: 90vh;
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .cc-course-description,
+  .cc-course-section {
+    padding: 15px;
+  }
+
+  .cc-modal-title-wrap { gap: 10px; }
+  .cc-modal-main-icon { flex-basis: 38px; font-size: 32px; }
+  .cc-modal-info-list { gap: 15px; }
+  .cc-modal-info-row { gap: 11px; }
+  .cc-modal-cta { width: 100%; }
+}
 `;
 
 document.head.appendChild(estilosCursosCC); 
 </script>
-
 
 
 </section>
